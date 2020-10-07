@@ -16,10 +16,6 @@
 		<relativePath>pom.xml</relativePath>
 	</parent>
 
-	<properties>
-		<liquibase.plugin.version>3.10.2</liquibase.plugin.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
@@ -39,41 +35,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>enforce-property</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-						<configuration>
-							<rules>
-								<requireProperty>
-									<property>openmrs.version</property>
-									<message>openmrs.version property is missing. This should be
-										something like 1.9.0, 1.8.3, or 1.10-alpha. Add
-										-Dopenmrs.version=1.9.1. NOTE: If building for 1.8.x, also add
-										-P1.8.x</message>
-								</requireProperty>
-							</rules>
-							<fail>true</fail>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<fork>true</fork>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -96,10 +57,9 @@
 					</execution>
 				</executions>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.liquibase</groupId>
-				<artifactId>${liquibasePluginArtifactId}</artifactId>
+				<artifactId>${liquibase.plugin.artifactId}</artifactId>
 				<executions>
 					<execution>
 						<id>empty-db-create-schema</id>
@@ -162,13 +122,12 @@
 				</executions>
 			</plugin>
 		</plugins>
-
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.liquibase</groupId>
-					<artifactId>${liquibasePluginArtifactId}</artifactId>
-					<version>${liquibasePluginVersion}</version>
+					<artifactId>${liquibase.plugin.artifactId}</artifactId>
+					<version>${liquibase.plugin.version.3.x}</version>
 					<dependencies>
 						<dependency>
 							<groupId>org.openmrs.api</groupId>
@@ -181,5 +140,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
 </project>
