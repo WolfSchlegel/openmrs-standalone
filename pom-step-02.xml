@@ -19,28 +19,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>generate-liquibase-resources</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-							<configuration>
-								<outputDirectory>${project.build.directory}/liquibase</outputDirectory>
-								<resources>
-									<resource>
-										<directory>src/main/liquibase</directory>
-										<filtering>true</filtering>
-									</resource>
-								</resources>
-							</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>${liquibase.plugin.artifactId}</artifactId>
 				<executions>
